@@ -1,3 +1,5 @@
+import { renderStars } from "./renderRating.js";
+
 
 export function renderProducts(products) {
     const productsContainer = document.querySelector("#product-list");
@@ -11,10 +13,13 @@ export function renderProducts(products) {
             <img src="${product.image}" alt="${product.name}" class="product-image">
             <h3 class="product-name">${product.name}</h3>
             <p class="product-price">$${product.price.toFixed(2)}</p>
-            <p class="product-rating">Rating: ${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)}</p>
-            <button class="add-to-cart-btn" data-id="${product.id}">${product.isInCart ? "Remove from cart" : "Add to cart"}</button>
         `;
+        productCard.appendChild(renderStars(product.rating))
 
+        const button  = document.createElement("button")
+        button.classList.add("add-to-cart-btn")
+        button.textContent = product.isInCart ? "Remove from cart" : "Add to cart"
+        productCard.appendChild(button)
         productsContainer.appendChild(productCard)
     })
 }

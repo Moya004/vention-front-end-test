@@ -1,0 +1,21 @@
+.star-rating {
+    display: flex;
+    gap: 4px;
+}
+
+.star {
+    width: 10px;
+    height: 10px;
+    background-image: url('../assets/star.svg');
+}
+
+
+.star.full {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.star.empty {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
