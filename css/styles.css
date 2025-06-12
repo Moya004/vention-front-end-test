@@ -70,6 +70,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  border-width: 0px;
   transform: translate(-50%, -50%);
   background-color: #3dd187;
   color: #fff;
@@ -80,9 +81,14 @@
   transition: opacity 0.3s ease;
 }
 
-.image-container:hover .add-to-cart-btn {
+.product-card:hover .add-to-cart-btn {
   opacity: 1;
   pointer-events: auto;
+}
+
+.product-card:hover .image-container img {
+  filter:opacity(0.3);
+  transition: 0.3s ease;
 }
 
 .product-info {
