@@ -9,17 +9,20 @@ export function renderProducts(products) {
         const productCard = document.createElement("div");
         productCard.className = "product-card"
 
+        const buttonText = product.isInCart ? "Remove from cart" : "Add to cart"
+        
         productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="product-image">
-            <h3 class="product-name">${product.name}</h3>
-            <p class="product-price">$${product.price.toFixed(2)}</p>
+            <div class="image-container">
+                <img src="${product.image}" alt="${product.name}">
+                <button class="add-to-cart-btn">${buttonText}</button>
+            </div>
+            <div id="info" class="product-info">
+                <p class="name">${product.name}</p>
+                <p class="price">$${product.price.toFixed(2)}</p>
+            </div>
         `;
-        productCard.appendChild(renderStars(product.rating))
-
-        const button  = document.createElement("button")
-        button.classList.add("add-to-cart-btn")
-        button.textContent = product.isInCart ? "Remove from cart" : "Add to cart"
-        productCard.appendChild(button)
+        productCard.lastElementChild.appendChild(renderStars(product.rating))
+        
         productsContainer.appendChild(productCard)
     })
 }
