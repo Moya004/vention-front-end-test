@@ -1,4 +1,5 @@
 import { Product } from "../models/Product.js"
+import  Cart  from "../../data/CartStorage.js"
 
 
 export const produtcState = {
@@ -12,4 +13,7 @@ export function loadProducts() {
         new Product(2, 17.60, "Orange Flower", "../assets/orange-flower.png", 3),
         new Product(3, 40.00, "Pink Flower", "../assets/pink-flower.png", 5),
     ]
+    for (const product of produtcState.products) {
+        product.isInCart = Cart.isInCart(product.id)
+    }
 }
