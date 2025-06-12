@@ -29,6 +29,7 @@
   padding: 20px;
   justify-content: center;
   font-family: 'Courier New', Courier, monospace;
+  z-index: 1;
 }
 
 
@@ -44,6 +45,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  z-index: 2;
 }
 
 .product-card:hover {
@@ -110,4 +112,26 @@
 .product-info .price {
   color: #000000;
   font-weight: bold;
+}
+
+
+.in-cart-badge {
+  position: relative;
+  top: -5px;
+  left: 0px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 50%; /* Círculo con suficiente padding */
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.product-card.in-cart .in-cart-badge {
+  opacity: 1;
+  pointer-events: auto;
 }

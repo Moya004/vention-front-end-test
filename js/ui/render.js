@@ -1,8 +1,8 @@
-import { renderStars } from "./renderRating.js";
+import { renderStars } from "./renderRating.js"
 
 
 export function renderProducts(products) {
-    const productsContainer = document.querySelector("#product-list");
+    const productsContainer = document.querySelector("#product-list")
     productsContainer.innerHTML = ""
 
     products.forEach(product => {
@@ -12,6 +12,9 @@ export function renderProducts(products) {
         const buttonText = product.isInCart ? "Remove from cart" : "Add to cart"
         
         productCard.innerHTML = `
+            <div >
+                <span id="badge" class="in-cart-badge">In Cart</span>
+            </div>
             <div class="image-container">
                 <img src="${product.image}" alt="${product.name}">
                 <button class="add-to-cart-btn">${buttonText}</button>
@@ -22,6 +25,18 @@ export function renderProducts(products) {
             </div>
         `;
         productCard.lastElementChild.appendChild(renderStars(product.rating))
+
+        const button = productCard.querySelector(".add-to-cart-btn")
+        button.addEventListener("click", () => {
+            product.isInCart = !product.isInCart;
+            button.textContent = product.isInCart ? "Remove from cart" : "Add to cart"
+            if(product.isInCart) {
+                productCard.classList.add("in-cart")
+            } else {
+                productCard.classList.remove("in-cart")
+            }
+
+        });
         
         productsContainer.appendChild(productCard)
     })
